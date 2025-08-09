@@ -1,0 +1,528 @@
+/* Logic Builder Coach - Extension Styles */
+
+/* Floating Button Styles */
+.logic-coach-floating-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 9999;
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    opacity: 0;
+    transform: translateY(20px) scale(0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    color: white;
+    border: none;
+    outline: none;
+    user-select: none;
+}
+
+.logic-coach-floating-btn.logic-coach-visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+.logic-coach-floating-btn:hover {
+    transform: translateY(-3px) scale(1.1);
+    box-shadow: 0 12px 35px rgba(102, 126, 234, 0.6);
+}
+
+.logic-coach-floating-btn:active {
+    transform: translateY(-1px) scale(1.05);
+}
+
+.logic-coach-btn-content {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+.logic-coach-tooltip {
+    position: absolute;
+    bottom: 70px;
+    right: 50%;
+    transform: translateX(50%);
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 500;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s ease;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.logic-coach-tooltip::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 5px solid transparent;
+    border-top-color: rgba(0, 0, 0, 0.8);
+}
+
+.logic-coach-floating-btn:hover .logic-coach-tooltip {
+    opacity: 1;
+    bottom: 75px;
+}
+
+/* Modal Overlay Styles */
+.logic-coach-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(8px);
+    z-index: 10000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: fadeInOverlay 0.3s ease-out;
+}
+
+.logic-coach-fadeout {
+    animation: fadeOutOverlay 0.3s ease-out forwards;
+}
+
+@keyframes fadeInOverlay {
+    from {
+        opacity: 0;
+        backdrop-filter: blur(0px);
+    }
+    to {
+        opacity: 1;
+        backdrop-filter: blur(8px);
+    }
+}
+
+@keyframes fadeOutOverlay {
+    from {
+        opacity: 1;
+        backdrop-filter: blur(8px);
+    }
+    to {
+        opacity: 0;
+        backdrop-filter: blur(0px);
+    }
+}
+
+/* Modal Content Styles */
+.logic-coach-modal {
+    background: white;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 900px;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 25px 80px rgba(0, 0, 0, 0.3);
+    animation: slideInModal 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+@keyframes slideInModal {
+    from {
+        opacity: 0;
+        transform: translateY(-30px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.logic-coach-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 25px 30px;
+    border-radius: 20px 20px 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+.logic-coach-header h3 {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.logic-coach-close-btn {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: white;
+    font-size: 24px;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.logic-coach-close-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: rotate(90deg);
+}
+
+.logic-coach-content {
+    padding: 30px;
+    line-height: 1.6;
+}
+
+/* Loading Animation */
+.logic-coach-loading {
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.logic-coach-spinner {
+    width: 50px;
+    height: 50px;
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #667eea;
+    border-radius: 50%;
+    margin: 0 auto 20px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.logic-coach-loading p {
+    color: #666;
+    font-size: 16px;
+    margin: 0;
+}
+
+/* Breakdown Content Styles */
+.logic-coach-breakdown {
+    animation: fadeInContent 0.5s ease-out;
+}
+
+@keyframes fadeInContent {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.logic-coach-section {
+    margin-bottom: 25px;
+}
+
+.logic-coach-section h4 {
+    color: #333;
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #f0f0f0;
+}
+
+/* Collapsible Section Styles */
+.logic-coach-collapsible {
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    margin-bottom: 15px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.logic-coach-collapsible:hover {
+    border-color: #cbd5e0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.logic-coach-section-btn {
+    width: 100%;
+    padding: 18px 25px;
+    background: #f8fafc;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 16px;
+    font-weight: 600;
+    color: #2d3748;
+    transition: all 0.3s ease;
+    text-align: left;
+}
+
+.logic-coach-section-btn:hover {
+    background: #edf2f7;
+}
+
+.logic-coach-section-btn.active {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.logic-coach-chevron {
+    font-size: 14px;
+    transition: transform 0.3s ease;
+    font-weight: bold;
+}
+
+.logic-coach-section-content {
+    padding: 25px;
+    background: white;
+    animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        max-height: 0;
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+    to {
+        opacity: 1;
+        max-height: 500px;
+        padding-top: 25px;
+        padding-bottom: 25px;
+    }
+}
+
+.logic-coach-section-content ul,
+.logic-coach-section-content ol {
+    margin: 0;
+    padding-left: 20px;
+}
+
+.logic-coach-section-content li {
+    margin-bottom: 12px;
+    color: #4a5568;
+    line-height: 1.6;
+}
+
+.logic-coach-section-content li strong {
+    color: #2d3748;
+}
+
+/* Action Buttons */
+.logic-coach-actions {
+    display: flex;
+    gap: 15px;
+    margin-top: 30px;
+    flex-wrap: wrap;
+}
+
+.logic-coach-btn {
+    padding: 12px 24px;
+    border-radius: 25px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    outline: none;
+}
+
+.logic-coach-btn-primary {
+    background: linear-gradient(135deg, #4ecdc4 0%, #44a08d 100%);
+    color: white;
+    box-shadow: 0 4px 15px rgba(78, 205, 196, 0.3);
+}
+
+.logic-coach-btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(78, 205, 196, 0.4);
+}
+
+.logic-coach-btn-secondary {
+    background: #718096;
+    color: white;
+    box-shadow: 0 4px 15px rgba(113, 128, 150, 0.2);
+}
+
+.logic-coach-btn-secondary:hover {
+    background: #4a5568;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(113, 128, 150, 0.3);
+}
+
+.logic-coach-btn:active {
+    transform: translateY(0);
+}
+
+/* Error State */
+.logic-coach-error {
+    text-align: center;
+    padding: 40px 20px;
+    color: #e53e3e;
+}
+
+.logic-coach-error h4 {
+    color: #e53e3e;
+    margin-bottom: 15px;
+}
+
+.logic-coach-error p {
+    color: #718096;
+    margin-bottom: 25px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .logic-coach-modal {
+        width: 95%;
+        margin: 10px;
+        border-radius: 15px;
+    }
+    
+    .logic-coach-header {
+        padding: 20px;
+        border-radius: 15px 15px 0 0;
+    }
+    
+    .logic-coach-header h3 {
+        font-size: 1.3rem;
+    }
+    
+    .logic-coach-content {
+        padding: 20px;
+    }
+    
+    .logic-coach-section-content {
+        padding: 20px;
+    }
+    
+    .logic-coach-actions {
+        flex-direction: column;
+    }
+    
+    .logic-coach-btn {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .logic-coach-floating-btn {
+        bottom: 20px;
+        right: 20px;
+        width: 55px;
+        height: 55px;
+        font-size: 22px;
+    }
+}
+
+@media (max-width: 480px) {
+    .logic-coach-section-btn {
+        padding: 15px 18px;
+        font-size: 14px;
+    }
+    
+    .logic-coach-section-content {
+        padding: 18px;
+    }
+    
+    .logic-coach-content {
+        padding: 15px;
+    }
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+    .logic-coach-modal {
+        background: #1a202c;
+        color: #e2e8f0;
+    }
+    
+    .logic-coach-section-btn {
+        background: #2d3748;
+        color: #e2e8f0;
+    }
+    
+    .logic-coach-section-btn:hover {
+        background: #4a5568;
+    }
+    
+    .logic-coach-section-content {
+        background: #1a202c;
+        border-color: #4a5568;
+    }
+    
+    .logic-coach-collapsible {
+        border-color: #4a5568;
+    }
+    
+    .logic-coach-section-content li {
+        color: #cbd5e0;
+    }
+    
+    .logic-coach-section-content li strong {
+        color: #e2e8f0;
+    }
+    
+    .logic-coach-section h4 {
+        color: #e2e8f0;
+        border-bottom-color: #4a5568;
+    }
+}
+
+/* Smooth scrollbar for modal */
+.logic-coach-modal::-webkit-scrollbar {
+    width: 8px;
+}
+
+.logic-coach-modal::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+.logic-coach-modal::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 4px;
+}
+
+.logic-coach-modal::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    .logic-coach-floating-btn {
+        border: 2px solid white;
+    }
+    
+    .logic-coach-modal {
+        border: 2px solid #000;
+    }
+    
+    .logic-coach-section-btn {
+        border: 1px solid #000;
+    }
+}
