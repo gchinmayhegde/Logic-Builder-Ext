@@ -1,28 +1,48 @@
-/* Logic Builder Coach - Extension Styles */
+/* Logic Builder Coach - Enhanced Hacker Terminal Theme */
 
 /* Floating Button Styles */
 .logic-coach-floating-btn {
     position: fixed;
     bottom: 30px;
     right: 30px;
-    width: 60px;
-    height: 60px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    width: 65px;
+    height: 65px;
+    background: linear-gradient(135deg, #0d1f1b 0%, #1a2f2a 50%, #0f2419 100%);
+    border: 2px solid #00ff88;
     border-radius: 50%;
     cursor: pointer;
     z-index: 9999;
-    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+    box-shadow: 
+        0 0 20px rgba(0, 255, 136, 0.4),
+        0 8px 25px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
     transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     opacity: 0;
     transform: translateY(20px) scale(0.8);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 24px;
-    color: white;
-    border: none;
+    font-size: 26px;
+    color: #00ff88;
     outline: none;
     user-select: none;
+    animation: pulse-glow 3s ease-in-out infinite;
+}
+
+@keyframes pulse-glow {
+    0%, 100% {
+        box-shadow: 
+            0 0 20px rgba(0, 255, 136, 0.4),
+            0 8px 25px rgba(0, 0, 0, 0.3),
+            inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    }
+    50% {
+        box-shadow: 
+            0 0 30px rgba(0, 255, 136, 0.6),
+            0 0 40px rgba(0, 255, 136, 0.3),
+            0 8px 25px rgba(0, 0, 0, 0.3),
+            inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    }
 }
 
 .logic-coach-floating-btn.logic-coach-visible {
@@ -32,11 +52,20 @@
 
 .logic-coach-floating-btn:hover {
     transform: translateY(-3px) scale(1.1);
-    box-shadow: 0 12px 35px rgba(102, 126, 234, 0.6);
+    background: linear-gradient(135deg, #1a2f2a 0%, #2a4a3a 50%, #1f3d2a 100%);
+    box-shadow: 
+        0 0 35px rgba(0, 255, 136, 0.7),
+        0 0 50px rgba(0, 255, 136, 0.4),
+        0 12px 35px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    border-color: #33ff99;
 }
 
 .logic-coach-floating-btn:active {
     transform: translateY(-1px) scale(1.05);
+    box-shadow: 
+        0 0 25px rgba(0, 255, 136, 0.8),
+        0 6px 20px rgba(0, 0, 0, 0.3);
 }
 
 .logic-coach-btn-content {
@@ -50,20 +79,23 @@
 
 .logic-coach-tooltip {
     position: absolute;
-    bottom: 70px;
+    bottom: 75px;
     right: 50%;
     transform: translateX(50%);
-    background: rgba(0, 0, 0, 0.8);
-    color: white;
-    padding: 8px 12px;
-    border-radius: 6px;
-    font-size: 12px;
-    font-weight: 500;
+    background: linear-gradient(135deg, #0d1f1b 0%, #1a2f2a 100%);
+    color: #00ff88;
+    padding: 10px 15px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
     white-space: nowrap;
     opacity: 0;
     pointer-events: none;
     transition: all 0.3s ease;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-family: 'Courier New', 'Monaco', monospace;
+    border: 1px solid #00ff88;
+    box-shadow: 0 0 15px rgba(0, 255, 136, 0.3);
+    text-shadow: 0 0 5px rgba(0, 255, 136, 0.5);
 }
 
 .logic-coach-tooltip::after {
@@ -72,13 +104,13 @@
     top: 100%;
     left: 50%;
     transform: translateX(-50%);
-    border: 5px solid transparent;
-    border-top-color: rgba(0, 0, 0, 0.8);
+    border: 6px solid transparent;
+    border-top-color: #00ff88;
 }
 
 .logic-coach-floating-btn:hover .logic-coach-tooltip {
     opacity: 1;
-    bottom: 75px;
+    bottom: 80px;
 }
 
 /* Modal Overlay Styles */
@@ -88,13 +120,13 @@
     left: 0;
     width: 100vw;
     height: 100vh;
-    background: rgba(0, 0, 0, 0.75);
-    backdrop-filter: blur(8px);
+    background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.95) 100%);
+    backdrop-filter: blur(10px);
     z-index: 10000;
     display: flex;
     justify-content: center;
     align-items: center;
-    animation: fadeInOverlay 0.3s ease-out;
+    animation: fadeInOverlay 0.4s ease-out;
 }
 
 .logic-coach-fadeout {
@@ -108,14 +140,14 @@
     }
     to {
         opacity: 1;
-        backdrop-filter: blur(8px);
+        backdrop-filter: blur(10px);
     }
 }
 
 @keyframes fadeOutOverlay {
     from {
         opacity: 1;
-        backdrop-filter: blur(8px);
+        backdrop-filter: blur(10px);
     }
     to {
         opacity: 0;
@@ -125,21 +157,26 @@
 
 /* Modal Content Styles */
 .logic-coach-modal {
-    background: white;
+    background: linear-gradient(135deg, #0a1a0f 0%, #0d1f1b 50%, #0f2419 100%);
+    border: 2px solid #00ff88;
     border-radius: 20px;
     width: 90%;
-    max-width: 900px;
+    max-width: 950px;
     max-height: 90vh;
     overflow-y: auto;
-    box-shadow: 0 25px 80px rgba(0, 0, 0, 0.3);
-    animation: slideInModal 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    box-shadow: 
+        0 0 50px rgba(0, 255, 136, 0.4),
+        0 25px 80px rgba(0, 0, 0, 0.6),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    animation: slideInModal 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    font-family: 'Courier New', 'Monaco', 'Consolas', monospace;
+    color: #a8e6a3;
 }
 
 @keyframes slideInModal {
     from {
         opacity: 0;
-        transform: translateY(-30px) scale(0.95);
+        transform: translateY(-50px) scale(0.9);
     }
     to {
         opacity: 1;
@@ -148,63 +185,73 @@
 }
 
 .logic-coach-header {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
+    background: linear-gradient(135deg, #1a2f2a 0%, #2a4a3a 50%, #1f3d2a 100%);
+    color: #00ff88;
     padding: 25px 30px;
-    border-radius: 20px 20px 0 0;
+    border-radius: 18px 18px 0 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
     position: sticky;
     top: 0;
     z-index: 1;
+    border-bottom: 1px solid #00ff88;
+    text-shadow: 0 0 10px rgba(0, 255, 136, 0.5);
 }
 
 .logic-coach-header h3 {
     margin: 0;
-    font-size: 1.5rem;
-    font-weight: 600;
+    font-size: 1.6rem;
+    font-weight: 700;
+    font-family: 'Courier New', monospace;
+    letter-spacing: 1px;
 }
 
 .logic-coach-close-btn {
-    background: rgba(255, 255, 255, 0.2);
-    border: none;
-    color: white;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid #00ff88;
+    color: #00ff88;
     font-size: 24px;
-    width: 35px;
-    height: 35px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
     transition: all 0.3s ease;
+    font-weight: bold;
+    box-shadow: 0 0 10px rgba(0, 255, 136, 0.3);
 }
 
 .logic-coach-close-btn:hover {
-    background: rgba(255, 255, 255, 0.3);
-    transform: rotate(90deg);
+    background: rgba(255, 0, 0, 0.2);
+    border-color: #ff4444;
+    color: #ff4444;
+    transform: rotate(90deg) scale(1.1);
+    box-shadow: 0 0 15px rgba(255, 68, 68, 0.5);
 }
 
 .logic-coach-content {
-    padding: 30px;
-    line-height: 1.6;
+    padding: 35px;
+    line-height: 1.7;
 }
 
 /* Loading Animation */
 .logic-coach-loading {
     text-align: center;
-    padding: 40px 20px;
+    padding: 50px 20px;
 }
 
 .logic-coach-spinner {
-    width: 50px;
-    height: 50px;
-    border: 4px solid #f3f3f3;
-    border-top: 4px solid #667eea;
+    width: 60px;
+    height: 60px;
+    border: 4px solid #1a2f2a;
+    border-top: 4px solid #00ff88;
     border-radius: 50%;
-    margin: 0 auto 20px;
+    margin: 0 auto 25px;
     animation: spin 1s linear infinite;
+    box-shadow: 0 0 20px rgba(0, 255, 136, 0.3);
 }
 
 @keyframes spin {
@@ -213,20 +260,28 @@
 }
 
 .logic-coach-loading p {
-    color: #666;
-    font-size: 16px;
+    color: #00ff88;
+    font-size: 18px;
     margin: 0;
+    font-family: 'Courier New', monospace;
+    text-shadow: 0 0 10px rgba(0, 255, 136, 0.5);
+    animation: pulse-text 2s ease-in-out infinite;
+}
+
+@keyframes pulse-text {
+    0%, 100% { opacity: 0.7; }
+    50% { opacity: 1; }
 }
 
 /* Breakdown Content Styles */
 .logic-coach-breakdown {
-    animation: fadeInContent 0.5s ease-out;
+    animation: fadeInContent 0.6s ease-out;
 }
 
 @keyframes fadeInContent {
     from {
         opacity: 0;
-        transform: translateY(10px);
+        transform: translateY(20px);
     }
     to {
         opacity: 1;
@@ -235,67 +290,81 @@
 }
 
 .logic-coach-section {
-    margin-bottom: 25px;
+    margin-bottom: 30px;
 }
 
 .logic-coach-section h4 {
-    color: #333;
-    font-size: 1.3rem;
-    font-weight: 600;
-    margin-bottom: 20px;
-    padding-bottom: 10px;
-    border-bottom: 2px solid #f0f0f0;
+    color: #00ff88;
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 25px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid #1a2f2a;
+    text-shadow: 0 0 10px rgba(0, 255, 136, 0.3);
+    font-family: 'Courier New', monospace;
+    letter-spacing: 0.5px;
 }
 
 /* Collapsible Section Styles */
 .logic-coach-collapsible {
-    border: 1px solid #e2e8f0;
+    border: 1px solid #2a4a3a;
     border-radius: 12px;
-    margin-bottom: 15px;
+    margin-bottom: 18px;
     overflow: hidden;
     transition: all 0.3s ease;
+    background: rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
 }
 
 .logic-coach-collapsible:hover {
-    border-color: #cbd5e0;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    border-color: #00ff88;
+    box-shadow: 
+        0 0 15px rgba(0, 255, 136, 0.2),
+        0 4px 15px rgba(0, 0, 0, 0.4);
 }
 
 .logic-coach-section-btn {
     width: 100%;
-    padding: 18px 25px;
-    background: #f8fafc;
+    padding: 20px 28px;
+    background: linear-gradient(135deg, #1a2f2a 0%, #0d1f1b 100%);
     border: none;
     cursor: pointer;
     display: flex;
     justify-content: space-between;
     align-items: center;
     font-size: 16px;
-    font-weight: 600;
-    color: #2d3748;
+    font-weight: 700;
+    color: #a8e6a3;
     transition: all 0.3s ease;
     text-align: left;
+    font-family: 'Courier New', monospace;
+    letter-spacing: 0.5px;
 }
 
 .logic-coach-section-btn:hover {
-    background: #edf2f7;
+    background: linear-gradient(135deg, #2a4a3a 0%, #1a2f2a 100%);
+    color: #ccffcc;
 }
 
 .logic-coach-section-btn.active {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
+    background: linear-gradient(135deg, #00ff88 0%, #33cc77 100%);
+    color: #0d1f1b;
+    text-shadow: none;
+    box-shadow: 0 0 15px rgba(0, 255, 136, 0.3);
 }
 
 .logic-coach-chevron {
-    font-size: 14px;
+    font-size: 16px;
     transition: transform 0.3s ease;
     font-weight: bold;
+    color: inherit;
 }
 
 .logic-coach-section-content {
-    padding: 25px;
-    background: white;
-    animation: slideDown 0.3s ease-out;
+    padding: 28px;
+    background: linear-gradient(135deg, #0f2419 0%, #0d1f1b 100%);
+    animation: slideDown 0.4s ease-out;
+    border-top: 1px solid #2a4a3a;
 }
 
 @keyframes slideDown {
@@ -307,93 +376,151 @@
     }
     to {
         opacity: 1;
-        max-height: 500px;
-        padding-top: 25px;
-        padding-bottom: 25px;
+        max-height: 800px;
+        padding-top: 28px;
+        padding-bottom: 28px;
     }
 }
 
 .logic-coach-section-content ul,
 .logic-coach-section-content ol {
     margin: 0;
-    padding-left: 20px;
+    padding-left: 25px;
 }
 
 .logic-coach-section-content li {
-    margin-bottom: 12px;
-    color: #4a5568;
-    line-height: 1.6;
+    margin-bottom: 15px;
+    color: #a8e6a3;
+    line-height: 1.7;
+    font-size: 15px;
 }
 
 .logic-coach-section-content li strong {
-    color: #2d3748;
+    color: #00ff88;
+    text-shadow: 0 0 5px rgba(0, 255, 136, 0.3);
+}
+
+/* Mistake Items */
+.mistake-item {
+    background: linear-gradient(135deg, #2d1810 0%, #3d2415 100%);
+    border-left: 4px solid #ff6b35;
+    border-radius: 0 8px 8px 0;
+    padding: 15px 20px;
+    margin: 15px 0;
+    box-shadow: 
+        0 0 10px rgba(255, 107, 53, 0.2),
+        0 2px 8px rgba(0, 0, 0, 0.3);
+    color: #ffccaa;
+}
+
+.mistake-item strong {
+    color: #ff8855 !important;
+    text-shadow: 0 0 5px rgba(255, 107, 53, 0.3);
 }
 
 /* Action Buttons */
 .logic-coach-actions {
     display: flex;
-    gap: 15px;
-    margin-top: 30px;
+    gap: 18px;
+    margin-top: 35px;
     flex-wrap: wrap;
 }
 
 .logic-coach-btn {
-    padding: 12px 24px;
-    border-radius: 25px;
+    padding: 15px 30px;
+    border-radius: 30px;
     border: none;
     cursor: pointer;
-    font-weight: 600;
-    font-size: 14px;
+    font-weight: 700;
+    font-size: 15px;
     transition: all 0.3s ease;
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
     text-decoration: none;
     outline: none;
+    font-family: 'Courier New', monospace;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
 }
 
 .logic-coach-btn-primary {
-    background: linear-gradient(135deg, #4ecdc4 0%, #44a08d 100%);
-    color: white;
-    box-shadow: 0 4px 15px rgba(78, 205, 196, 0.3);
+    background: linear-gradient(135deg, #00ff88 0%, #33cc77 100%);
+    color: #0d1f1b;
+    box-shadow: 
+        0 0 20px rgba(0, 255, 136, 0.4),
+        0 6px 20px rgba(0, 0, 0, 0.3);
+    text-shadow: none;
 }
 
 .logic-coach-btn-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(78, 205, 196, 0.4);
+    transform: translateY(-3px);
+    background: linear-gradient(135deg, #33ff99 0%, #00ff88 100%);
+    box-shadow: 
+        0 0 30px rgba(0, 255, 136, 0.6),
+        0 10px 30px rgba(0, 0, 0, 0.4);
 }
 
 .logic-coach-btn-secondary {
-    background: #718096;
-    color: white;
-    box-shadow: 0 4px 15px rgba(113, 128, 150, 0.2);
+    background: linear-gradient(135deg, #4a5568 0%, #2d3748 100%);
+    color: #a8e6a3;
+    border: 1px solid #00ff88;
+    box-shadow: 
+        0 0 15px rgba(0, 255, 136, 0.2),
+        0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 .logic-coach-btn-secondary:hover {
-    background: #4a5568;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(113, 128, 150, 0.3);
+    background: linear-gradient(135dd, #718096 0%, #4a5568 100%);
+    color: #00ff88;
+    transform: translateY(-3px);
+    box-shadow: 
+        0 0 25px rgba(0, 255, 136, 0.4),
+        0 8px 25px rgba(0, 0, 0, 0.3);
 }
 
 .logic-coach-btn:active {
-    transform: translateY(0);
+    transform: translateY(-1px);
 }
 
 /* Error State */
 .logic-coach-error {
     text-align: center;
-    padding: 40px 20px;
-    color: #e53e3e;
+    padding: 50px 30px;
+    color: #ff6b6b;
 }
 
 .logic-coach-error h4 {
-    color: #e53e3e;
-    margin-bottom: 15px;
+    color: #ff4444;
+    margin-bottom: 20px;
+    font-size: 1.3rem;
+    text-shadow: 0 0 10px rgba(255, 68, 68, 0.3);
 }
 
 .logic-coach-error p {
-    color: #718096;
-    margin-bottom: 25px;
+    color: #ffaaaa;
+    margin-bottom: 30px;
+    line-height: 1.6;
+}
+
+/* Custom Scrollbar */
+.logic-coach-modal::-webkit-scrollbar {
+    width: 12px;
+}
+
+.logic-coach-modal::-webkit-scrollbar-track {
+    background: #0d1f1b;
+    border-radius: 6px;
+}
+
+.logic-coach-modal::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, #00ff88 0%, #33cc77 100%);
+    border-radius: 6px;
+    border: 2px solid #0d1f1b;
+}
+
+.logic-coach-modal::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, #33ff99 0%, #00ff88 100%);
 }
 
 /* Responsive Design */
@@ -406,15 +533,15 @@
     
     .logic-coach-header {
         padding: 20px;
-        border-radius: 15px 15px 0 0;
+        border-radius: 13px 13px 0 0;
     }
     
     .logic-coach-header h3 {
-        font-size: 1.3rem;
+        font-size: 1.4rem;
     }
     
     .logic-coach-content {
-        padding: 20px;
+        padding: 25px 20px;
     }
     
     .logic-coach-section-content {
@@ -428,101 +555,81 @@
     .logic-coach-btn {
         width: 100%;
         justify-content: center;
+        text-align: center;
     }
     
     .logic-coach-floating-btn {
         bottom: 20px;
         right: 20px;
-        width: 55px;
-        height: 55px;
-        font-size: 22px;
+        width: 60px;
+        height: 60px;
+        font-size: 24px;
     }
 }
 
 @media (max-width: 480px) {
     .logic-coach-section-btn {
-        padding: 15px 18px;
+        padding: 16px 20px;
         font-size: 14px;
     }
     
     .logic-coach-section-content {
-        padding: 18px;
+        padding: 20px 16px;
     }
     
     .logic-coach-content {
-        padding: 15px;
-    }
-}
-
-/* Dark Mode Support */
-@media (prefers-color-scheme: dark) {
-    .logic-coach-modal {
-        background: #1a202c;
-        color: #e2e8f0;
+        padding: 20px 15px;
     }
     
-    .logic-coach-section-btn {
-        background: #2d3748;
-        color: #e2e8f0;
+    .logic-coach-header {
+        padding: 18px;
     }
     
-    .logic-coach-section-btn:hover {
-        background: #4a5568;
+    .logic-coach-btn {
+        padding: 12px 24px;
+        font-size: 14px;
     }
-    
-    .logic-coach-section-content {
-        background: #1a202c;
-        border-color: #4a5568;
-    }
-    
-    .logic-coach-collapsible {
-        border-color: #4a5568;
-    }
-    
-    .logic-coach-section-content li {
-        color: #cbd5e0;
-    }
-    
-    .logic-coach-section-content li strong {
-        color: #e2e8f0;
-    }
-    
-    .logic-coach-section h4 {
-        color: #e2e8f0;
-        border-bottom-color: #4a5568;
-    }
-}
-
-/* Smooth scrollbar for modal */
-.logic-coach-modal::-webkit-scrollbar {
-    width: 8px;
-}
-
-.logic-coach-modal::-webkit-scrollbar-track {
-    background: #f1f1f1;
-    border-radius: 4px;
-}
-
-.logic-coach-modal::-webkit-scrollbar-thumb {
-    background: #c1c1c1;
-    border-radius: 4px;
-}
-
-.logic-coach-modal::-webkit-scrollbar-thumb:hover {
-    background: #a8a8a8;
 }
 
 /* High contrast mode support */
 @media (prefers-contrast: high) {
     .logic-coach-floating-btn {
-        border: 2px solid white;
+        border-width: 3px;
     }
     
     .logic-coach-modal {
-        border: 2px solid #000;
+        border-width: 3px;
     }
     
     .logic-coach-section-btn {
-        border: 1px solid #000;
+        border: 2px solid #00ff88;
+    }
+}
+
+/* Motion reduction for accessibility */
+@media (prefers-reduced-motion: reduce) {
+    .logic-coach-floating-btn {
+        animation: none;
+    }
+    
+    .logic-coach-modal {
+        animation: none;
+    }
+    
+    .logic-coach-spinner {
+        animation: none;
+        border-top-color: transparent;
+    }
+    
+    * {
+        transition-duration: 0.01s !important;
+    }
+}
+
+/* Print styles */
+@media print {
+    .logic-coach-floating-btn,
+    .logic-coach-overlay {
+        display: none !important;
     }
 }

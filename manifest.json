@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Logic Builder Coach",
-  "version": "1.0",
+  "version": "1.1",
   "description": "AI-powered coding logic assistant for beginner programmers on LeetCode, GeeksforGeeks, and HackerRank",
   "permissions": [
     "activeTab",
@@ -10,10 +10,16 @@
   ],
   "host_permissions": [
     "https://leetcode.com/*",
+    "https://www.leetcode.com/*",
+    "https://leetcode.cn/*",
     "https://www.geeksforgeeks.org/*",
+    "https://geeksforgeeks.org/*",
     "https://www.hackerrank.com/*",
+    "https://hackerrank.com/*",
     "https://codeforces.com/*",
-    "https://codechef.com/*"
+    "https://www.codeforces.com/*",
+    "https://codechef.com/*",
+    "https://www.codechef.com/*"
   ],
   "background": {
     "service_worker": "background.js"
@@ -22,14 +28,24 @@
     {
       "matches": [
         "https://leetcode.com/problems/*",
+        "https://www.leetcode.com/problems/*",
+        "https://leetcode.cn/problems/*",
         "https://www.geeksforgeeks.org/problems/*",
+        "https://geeksforgeeks.org/problems/*",
+        "https://www.geeksforgeeks.org/practice/*",
         "https://www.hackerrank.com/challenges/*",
+        "https://hackerrank.com/challenges/*",
+        "https://www.hackerrank.com/contests/*/challenges/*",
         "https://codeforces.com/problem/*",
-        "https://www.codechef.com/problems/*"
+        "https://www.codeforces.com/problem/*",
+        "https://codeforces.com/contest/*/problem/*",
+        "https://www.codechef.com/problems/*",
+        "https://codechef.com/problems/*",
+        "https://www.codechef.com/*/problems/*"
       ],
-      "js": ["contentScript.js"],
+      "js": ["logicAssistant.js", "contentScript.js"],
       "css": ["styles.css"],
-      "run_at": "document_end"
+      "run_at": "document_idle"
     }
   ],
   "action": {
@@ -43,7 +59,7 @@
   },
   "web_accessible_resources": [
     {
-      "resources": ["popup.html", "popup.js", "styles.css"],
+      "resources": ["popup.html", "popup.js", "styles.css", "logicAssistant.js"],
       "matches": ["<all_urls>"]
     }
   ]
