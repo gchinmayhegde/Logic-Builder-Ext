@@ -1,94 +1,111 @@
-// Service Worker for Logic Builder Coach Chrome Extension
+// background.js - Service Worker for Logic Builder Coach Extension
 
-chrome.runtime.onInstalled.addListener(() => {
-  console.log('Logic Builder Coach installed');
-  
-  // Initialize storage with default settings
-  chrome.storage.sync.set({
-    theme: 'light',
-    autoDetect: true,
-    showHints: true,
-    apiKey: '',
-    visitedProblems: []
-  });
+chrome.runtime.onInstalled.addListener((details) => {
+  if (details.reason === 'install') {
+    console.log('Logic Builder Coach installed');
+    
+    // Set default settings
+    chrome.storage.sync.set({
+      theme: 'light',
+      autoDetect: true,
+      showHints: true,
+      apiKey: '',
+      visitedProblems: []
+    });
+  } else if (details.reason === 'update') {
+    console.log('Logic Builder Coach updated');
+  }
 });
 
-// Handle messages from content scripts
-chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-  if (request.action === 'problemDetected') {
-    // Store the detected problem
+// Listen for messages from content script
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+  console.log('Background received message:', message);
+  
+  if (message.action === 'problemDetected') {
+    // Store the current problem in local storage
     chrome.storage.local.set({
-      currentProblem: request.problem,
-      currentUrl: sender.tab.url,
-      timestamp: Date.now()
+      currentProblem: message.problem,
+      tabId: sender.tab.id
     });
     
-    // Update badge to show problem detected
+    // Update extension badge
     chrome.action.setBadgeText({
       text: '!',
       tabId: sender.tab.id
     });
     
     chrome.action.setBadgeBackgroundColor({
-      color: '#4CAF50',
+      color: '#00ff88',
       tabId: sender.tab.id
     });
     
-    sendResponse({status: 'success'});
-  }
-  
-  if (request.action === 'clearBadge') {
-    chrome.action.setBadgeText({
-      text: '',
-      tabId: sender.tab.id
-    });
+    console.log('Problem stored:', message.problem.title);
   }
   
   return true; // Keep message channel open for async response
 });
 
-// Handle tab updates to clear badge when navigating away
+// Clear badge when tab is updated (navigated away)
 chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
-  if (changeInfo.status === 'complete') {
-    const supportedSites = [
-      'leetcode.com',
-      'geeksforgeeks.org',
-      'hackerrank.com',
-      'codeforces.com',
-      'codechef.com'
-    ];
+  if (changeInfo.status === 'loading') {
+    chrome.action.setBadgeText({
+      text: '',
+      tabId: tabId
+    });
     
-    const isSupported = supportedSites.some(site => 
-      tab.url && tab.url.includes(site)
-    );
-    
-    if (!isSupported) {
-      chrome.action.setBadgeText({
-        text: '',
-        tabId: tabId
-      });
-    }
+    // Clear stored problem for this tab
+    chrome.storage.local.remove(['currentProblem', 'selectedText']);
   }
 });
 
-// Context menu for manual problem selection
+// Handle tab removal
+chrome.tabs.onRemoved.addListener((tabId) => {
+  // Clean up any stored data for the closed tab
+  chrome.storage.local.get(['tabId'], (data) => {
+    if (data.tabId === tabId) {
+      chrome.storage.local.remove(['currentProblem', 'selectedText', 'tabId']);
+    }
+  });
+});
+
+// Context menu for selected text analysis (optional feature)
 chrome.contextMenus.create({
-  id: 'analyzeSelection',
-  title: 'Analyze with Logic Builder Coach',
-  contexts: ['selection']
+  id: 'analyzeSelectedText',
+  title: 'Analyze with Logic Coach',
+  contexts: ['selection'],
+  documentUrlPatterns: [
+    '*://leetcode.com/*',
+    '*://www.leetcode.com/*',
+    '*://www.geeksforgeeks.org/*',
+    '*://www.hackerrank.com/*',
+    '*://codeforces.com/*',
+    '*://www.codechef.com/*'
+  ]
 });
 
 chrome.contextMenus.onClicked.addListener((info, tab) => {
-  if (info.menuItemId === 'analyzeSelection') {
+  if (info.menuItemId === 'analyzeSelectedText') {
+    // Store selected text for analysis
     chrome.storage.local.set({
       selectedText: info.selectionText,
-      currentUrl: tab.url,
-      timestamp: Date.now()
+      tabId: tab.id
     });
     
+    // Update badge to indicate text selected
     chrome.action.setBadgeText({
-      text: '✓',
+      text: 'T',
+      tabId: tab.id
+    });
+    
+    chrome.action.setBadgeBackgroundColor({
+      color: '#4ECDC4',
       tabId: tab.id
     });
   }
+});
+
+// Handle extension icon click
+chrome.action.onClicked.addListener((tab) => {
+  // This will be handled by the popup, but we can add logic here if needed
+  console.log('Extension icon clicked on tab:', tab.id);
 });

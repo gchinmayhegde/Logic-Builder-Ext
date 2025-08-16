@@ -151,6 +151,81 @@
             margin-top: 5px;
         }
         
+        /* Problem Info Styles - Point-wise format */
+        .problem-info {
+            background: linear-gradient(135deg, #0f2419 0%, #1a2f2a 100%);
+            border-radius: 10px;
+            padding: 18px;
+            margin: 18px 0;
+            border: 1px solid #2a4a3a;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .problem-title {
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #00ff88;
+            font-size: 16px;
+            text-shadow: 0 0 8px rgba(0, 255, 136, 0.3);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .problem-site {
+            background: linear-gradient(135deg, #00ff88 0%, #33cc77 100%);
+            color: #0d1f1b;
+            padding: 6px 12px;
+            border-radius: 15px;
+            font-size: 12px;
+            font-weight: 700;
+            display: inline-block;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 0 10px rgba(0, 255, 136, 0.3);
+        }
+        
+        .problem-details {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        
+        .problem-point {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(42, 74, 58, 0.3);
+        }
+        
+        .problem-point:last-child {
+            border-bottom: none;
+        }
+        
+        .problem-icon {
+            color: #00ff88;
+            font-size: 12px;
+            margin-top: 3px;
+            min-width: 12px;
+        }
+        
+        .problem-label {
+            color: #00ff88;
+            font-weight: 600;
+            font-size: 13px;
+            min-width: 80px;
+        }
+        
+        .problem-value {
+            color: #a8e6a3;
+            font-size: 13px;
+            line-height: 1.4;
+            flex: 1;
+        }
+        
+        /* Action Buttons */
         .btn-coach {
             background: linear-gradient(135deg, #00ff88 0%, #33cc77 100%);
             border: none;
@@ -243,44 +318,7 @@
             box-shadow: none;
         }
         
-        .problem-info {
-            background: linear-gradient(135deg, #0f2419 0%, #1a2f2a 100%);
-            border-radius: 10px;
-            padding: 18px;
-            margin: 18px 0;
-            border: 1px solid #2a4a3a;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-        }
-        
-        .problem-title {
-            font-weight: 700;
-            margin-bottom: 10px;
-            color: #00ff88;
-            font-size: 16px;
-            text-shadow: 0 0 8px rgba(0, 255, 136, 0.3);
-        }
-        
-        .problem-site {
-            background: linear-gradient(135deg, #00ff88 0%, #33cc77 100%);
-            color: #0d1f1b;
-            padding: 6px 12px;
-            border-radius: 15px;
-            font-size: 12px;
-            font-weight: 700;
-            display: inline-block;
-            margin-bottom: 12px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            box-shadow: 0 0 10px rgba(0, 255, 136, 0.3);
-        }
-        
-        .problem-description {
-            color: #a8e6a3;
-            font-size: 13px;
-            line-height: 1.5;
-            opacity: 0.9;
-        }
-        
+        /* Settings Section */
         .settings-section {
             border-top: 2px solid #2a4a3a;
             padding-top: 25px;
@@ -377,6 +415,112 @@
             margin-top: 8px;
         }
         
+        /* History Modal Styles */
+        .history-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 10000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(10px);
+        }
+        
+        .history-content {
+            background: linear-gradient(135deg, #0a1a0f 0%, #0d1f1b 50%, #0f2419 100%);
+            border: 2px solid #00ff88;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 600px;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: 
+                0 0 50px rgba(0, 255, 136, 0.4),
+                0 25px 80px rgba(0, 0, 0, 0.6);
+            font-family: 'Courier New', monospace;
+            color: #a8e6a3;
+        }
+        
+        .history-header {
+            background: linear-gradient(135deg, #1a2f2a 0%, #2a4a3a 100%);
+            color: #00ff88;
+            padding: 20px;
+            border-radius: 18px 18px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #00ff88;
+        }
+        
+        .history-header h3 {
+            margin: 0;
+            font-size: 1.4rem;
+            font-weight: 700;
+            text-shadow: 0 0 10px rgba(0, 255, 136, 0.5);
+        }
+        
+        .history-close {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid #00ff88;
+            color: #00ff88;
+            font-size: 20px;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        
+        .history-close:hover {
+            background: rgba(255, 0, 0, 0.2);
+            border-color: #ff4444;
+            color: #ff4444;
+        }
+        
+        .history-body {
+            padding: 25px;
+        }
+        
+        .history-item {
+            background: linear-gradient(135deg, #0f2419 0%, #1a2f2a 100%);
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 15px;
+            border: 1px solid #2a4a3a;
+            transition: all 0.3s ease;
+        }
+        
+        .history-item:hover {
+            border-color: #00ff88;
+            box-shadow: 0 0 15px rgba(0, 255, 136, 0.2);
+        }
+        
+        .history-item-title {
+            color: #00ff88;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        
+        .history-item-meta {
+            color: #a8e6a3;
+            font-size: 12px;
+            opacity: 0.8;
+        }
+        
+        .no-history {
+            text-align: center;
+            padding: 40px 20px;
+            color: #a8e6a3;
+            font-style: italic;
+        }
+        
         .fade-in {
             animation: fadeIn 0.6s ease-in;
         }
@@ -384,16 +528,6 @@
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(15px); }
             to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .pulse {
-            animation: pulse-glow 2s infinite;
-        }
-        
-        @keyframes pulse-glow {
-            0% { box-shadow: 0 0 20px rgba(0, 255, 136, 0.4), 0 6px 20px rgba(0, 0, 0, 0.3); }
-            50% { box-shadow: 0 0 30px rgba(0, 255, 136, 0.6), 0 8px 25px rgba(0, 0, 0, 0.4); }
-            100% { box-shadow: 0 0 20px rgba(0, 255, 136, 0.4), 0 6px 20px rgba(0, 0, 0, 0.3); }
         }
         
         /* Scrollbar */
@@ -412,28 +546,6 @@
         
         ::-webkit-scrollbar-thumb:hover {
             background: linear-gradient(135deg, #33ff99 0%, #00ff88 100%);
-        }
-        
-        /* Loading animation for buttons */
-        .loading {
-            position: relative;
-        }
-        
-        .loading::after {
-            content: '';
-            position: absolute;
-            width: 16px;
-            height: 16px;
-            margin: auto;
-            border: 2px solid transparent;
-            border-top-color: #0d1f1b;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-        
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
         }
     </style>
 </head>
@@ -459,23 +571,39 @@
             
             <div id="problemInfo" class="problem-info" style="display: none;">
                 <div class="problem-site" id="problemSite">LeetCode</div>
-                <div class="problem-title" id="problemTitle">Two Sum</div>
-                <div class="problem-description" id="problemDescription">Find two numbers that add up to target...</div>
+                <div class="problem-title" id="problemTitle">
+                    <i class="fas fa-code"></i>
+                    <span>Two Sum</span>
+                </div>
+                
+                <div class="problem-details">
+                    <div class="problem-point">
+                        <i class="fas fa-circle problem-icon"></i>
+                        <span class="problem-label">Platform:</span>
+                        <span class="problem-value" id="problemPlatform">LeetCode</span>
+                    </div>
+                    <div class="problem-point">
+                        <i class="fas fa-circle problem-icon"></i>
+                        <span class="problem-label">Difficulty:</span>
+                        <span class="problem-value" id="problemDifficulty">Easy</span>
+                    </div>
+                    <div class="problem-point">
+                        <i class="fas fa-circle problem-icon"></i>
+                        <span class="problem-label">Type:</span>
+                        <span class="problem-value" id="problemType">Array, Hash Table</span>
+                    </div>
+                    <div class="problem-point">
+                        <i class="fas fa-circle problem-icon"></i>
+                        <span class="problem-label">Status:</span>
+                        <span class="problem-value" id="problemStatus">Ready for analysis</span>
+                    </div>
+                </div>
             </div>
             
-            <button id="analyzeBtn" class="btn btn-coach pulse" disabled>
-                <i class="fas fa-magic"></i> Analyze Problem Logic
-            </button>
-            
             <div class="row">
-                <div class="col-6">
-                    <button id="hintBtn" class="btn btn-secondary btn-sm w-100" disabled>
-                        <i class="fas fa-lightbulb"></i> Quick Hint
-                    </button>
-                </div>
-                <div class="col-6">
-                    <button id="historyBtn" class="btn btn-secondary btn-sm w-100">
-                        <i class="fas fa-history"></i> History
+                <div class="col-12">
+                    <button id="historyBtn" class="btn btn-secondary w-100">
+                        <i class="fas fa-history"></i> Problem History
                     </button>
                 </div>
             </div>
@@ -518,7 +646,28 @@
         </div>
     </div>
 
+    <!-- History Modal Template (will be created dynamically) -->
+    <div id="historyModalTemplate" style="display: none;">
+        <div class="history-modal">
+            <div class="history-content">
+                <div class="history-header">
+                    <h3><i class="fas fa-history"></i> Problem History</h3>
+                    <button class="history-close">&times;</button>
+                </div>
+                <div class="history-body">
+                    <div class="no-history">
+                        <p><i class="fas fa-book-open" style="font-size: 2rem; margin-bottom: 15px; display: block; color: #00ff88;"></i></p>
+                        <p>No problems analyzed yet.<br>Start by analyzing a problem!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-    <script src="popup.js"></script>
+    <script>
+        // Updated popup.js logic will be provided separately
+        console.log('Logic Builder Coach Popup loaded');
+    </script>
 </body>
 </html>

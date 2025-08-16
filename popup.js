@@ -186,7 +186,7 @@ class PopupManager {
       left: 0;
       width: 100vw;
       height: 100vh;
-      background: rgba(0, 0, 0, 0.8);
+      background: rgba(0, 0, 0, 0.9);
       z-index: 10000;
       display: flex;
       justify-content: center;
@@ -196,14 +196,17 @@ class PopupManager {
 
     const modal = document.createElement('div');
     modal.style.cssText = `
-      background: white;
-      border-radius: 15px;
+      background: linear-gradient(135deg, #0a1a0f 0%, #0d1f1b 50%, #0f2419 100%);
+      border: 2px solid #00ff88;
+      border-radius: 20px;
       width: 90%;
-      max-width: 800px;
+      max-width: 900px;
       max-height: 90vh;
       overflow-y: auto;
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 0 50px rgba(0, 255, 136, 0.4);
       animation: slideIn 0.3s ease-out;
+      font-family: 'Courier New', monospace;
+      color: #a8e6a3;
     `;
 
     modal.innerHTML = `
@@ -213,96 +216,150 @@ class PopupManager {
           to { transform: translateY(0); opacity: 1; }
         }
         .analysis-header {
-          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-          color: white;
-          padding: 20px;
-          border-radius: 15px 15px 0 0;
+          background: linear-gradient(135deg, #1a2f2a 0%, #2a4a3a 100%);
+          color: #00ff88;
+          padding: 25px 30px;
+          border-radius: 18px 18px 0 0;
           display: flex;
           justify-content: space-between;
           align-items: center;
+          text-shadow: 0 0 10px rgba(0, 255, 136, 0.5);
         }
         .analysis-content {
-          padding: 30px;
-          line-height: 1.6;
+          padding: 35px;
+          line-height: 1.7;
         }
-        .analysis-section {
-          margin-bottom: 25px;
-          border: 1px solid #e0e0e0;
-          border-radius: 8px;
+        .logic-step {
+          background: rgba(0, 0, 0, 0.3);
+          border: 1px solid #2a4a3a;
+          border-radius: 12px;
+          margin-bottom: 20px;
           overflow: hidden;
         }
-        .section-header {
-          background: #f8f9fa;
-          padding: 15px 20px;
-          border-bottom: 1px solid #e0e0e0;
+        .step-header {
+          background: linear-gradient(135deg, #1a2f2a 0%, #0d1f1b 100%);
+          padding: 18px 25px;
           cursor: pointer;
           display: flex;
           justify-content: space-between;
           align-items: center;
-          font-weight: 600;
-          color: #333;
+          font-weight: 700;
+          color: #a8e6a3;
+          transition: all 0.3s ease;
         }
-        .section-content {
-          padding: 20px;
-          background: white;
+        .step-header:hover {
+          background: linear-gradient(135deg, #2a4a3a 0%, #1a2f2a 100%);
+          color: #ccffcc;
         }
-        .section-content ul, .section-content ol {
+        .step-header.active {
+          background: linear-gradient(135deg, #00ff88 0%, #33cc77 100%);
+          color: #0d1f1b;
+        }
+        .step-content {
+          padding: 25px;
+          background: linear-gradient(135deg, #0f2419 0%, #0d1f1b 100%);
+          border-top: 1px solid #2a4a3a;
+        }
+        .step-content ul, .step-content ol {
           margin: 0;
-          padding-left: 20px;
+          padding-left: 25px;
         }
-        .section-content li {
-          margin-bottom: 8px;
+        .step-content li {
+          margin-bottom: 12px;
+          color: #a8e6a3;
+          line-height: 1.6;
+        }
+        .step-content li strong {
+          color: #00ff88;
+          text-shadow: 0 0 5px rgba(0, 255, 136, 0.3);
         }
         .mistake-item {
-          background: #fff3cd;
-          border-left: 4px solid #ffc107;
-          padding: 10px 15px;
-          margin: 10px 0;
-          border-radius: 0 5px 5px 0;
+          background: linear-gradient(135deg, #2d1810 0%, #3d2415 100%);
+          border-left: 4px solid #ff6b35;
+          padding: 15px 20px;
+          margin: 12px 0;
+          border-radius: 0 8px 8px 0;
+          color: #ffccaa;
+        }
+        .hint-box {
+          background: linear-gradient(135deg, #0d1f1b 0%, #1a2f2a 100%);
+          border: 2px solid #00ff88;
+          border-radius: 12px;
+          padding: 20px;
+          margin: 20px 0;
+          box-shadow: 0 0 15px rgba(0, 255, 136, 0.2);
         }
         .action-buttons {
           display: flex;
-          gap: 10px;
-          margin-top: 20px;
+          gap: 15px;
+          margin-top: 30px;
           flex-wrap: wrap;
         }
         .btn {
-          padding: 10px 20px;
+          padding: 12px 24px;
           border-radius: 25px;
           border: none;
           cursor: pointer;
-          font-weight: 600;
+          font-weight: 700;
+          font-size: 14px;
           transition: all 0.3s ease;
+          font-family: 'Courier New', monospace;
+          text-transform: uppercase;
+          letter-spacing: 0.5px;
         }
         .btn-primary {
-          background: linear-gradient(45deg, #4ECDC4, #44A08D);
-          color: white;
+          background: linear-gradient(135deg, #00ff88 0%, #33cc77 100%);
+          color: #0d1f1b;
+          box-shadow: 0 0 15px rgba(0, 255, 136, 0.3);
+        }
+        .btn-primary:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 0 20px rgba(0, 255, 136, 0.5);
         }
         .btn-secondary {
-          background: #6c757d;
-          color: white;
+          background: linear-gradient(135deg, #4a5568 0%, #2d3748 100%);
+          color: #a8e6a3;
+          border: 1px solid #00ff88;
         }
-        .btn:hover {
+        .btn-secondary:hover {
+          background: linear-gradient(135deg, #718096 0%, #4a5568 100%);
+          color: #00ff88;
           transform: translateY(-2px);
-          box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
         .close-btn {
-          background: none;
-          border: none;
-          color: white;
+          background: rgba(0, 0, 0, 0.3);
+          border: 1px solid #00ff88;
+          color: #00ff88;
           font-size: 24px;
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
           cursor: pointer;
-          padding: 0;
-          width: 30px;
-          height: 30px;
           display: flex;
           align-items: center;
           justify-content: center;
-          border-radius: 50%;
-          transition: background 0.3s ease;
+          transition: all 0.3s ease;
         }
         .close-btn:hover {
-          background: rgba(255, 255, 255, 0.2);
+          background: rgba(255, 0, 0, 0.2);
+          border-color: #ff4444;
+          color: #ff4444;
+          transform: rotate(90deg);
+        }
+        .code-template-box {
+          background: #000;
+          border: 1px solid #333;
+          border-radius: 8px;
+          padding: 20px;
+          margin: 15px 0;
+          overflow-x: auto;
+        }
+        .code-template-box pre {
+          margin: 0;
+          color: #a8e6a3;
+          font-family: 'Courier New', monospace;
+          font-size: 13px;
+          white-space: pre-wrap;
         }
       </style>
       
@@ -315,104 +372,156 @@ class PopupManager {
       </div>
       
       <div class="analysis-content">
-        <div class="analysis-section">
-          <div class="section-header" onclick="toggleSection(this)">
-            <span>📝 1. Input/Output Format</span>
+        <!-- Step 1: Input/Output Format -->
+        <div class="logic-step">
+          <div class="step-header active" onclick="toggleLogicStep(this)">
+            <span>📝 Step 1: Input/Output Format Analysis</span>
             <span class="chevron">▼</span>
           </div>
-          <div class="section-content">
+          <div class="step-content">
             <ul>
-              <li><strong>Input:</strong> Based on the problem description, identify the data structure and format</li>
-              <li><strong>Output:</strong> Determine what type of result is expected</li>
-              <li><strong>Example:</strong> Look for sample inputs and expected outputs</li>
-              <li><strong>Data Types:</strong> Integer, string, array, matrix, tree, etc.</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="analysis-section">
-          <div class="section-header" onclick="toggleSection(this)">
-            <span>⚠️ 2. Constraints & Edge Cases</span>
-            <span class="chevron">▶</span>
-          </div>
-          <div class="section-content" style="display: none;">
-            <ul>
-              <li><strong>Empty input:</strong> What happens with null, empty array, or empty string?</li>
-              <li><strong>Single element:</strong> How does your solution handle minimal input?</li>
-              <li><strong>Boundary values:</strong> Minimum and maximum constraints</li>
-              <li><strong>Duplicate elements:</strong> Are duplicates allowed? How to handle?</li>
-              <li><strong>Negative numbers:</strong> If applicable, consider negative values</li>
-              <li><strong>Integer overflow:</strong> For large numbers, consider data type limits</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="analysis-section">
-          <div class="section-header" onclick="toggleSection(this)">
-            <span>📋 3. Step-by-Step Logical Plan</span>
-            <span class="chevron">▶</span>
-          </div>
-          <div class="section-content" style="display: none;">
-            <ol>
-              <li><strong>Input Validation:</strong> Check for edge cases first</li>
-              <li><strong>Initialize Variables:</strong> Set up result variables, counters, or data structures</li>
-              <li><strong>Main Algorithm:</strong> 
+              <li><strong>Input Analysis:</strong> 
                 <ul>
-                  <li>Iterate through the input data</li>
-                  <li>Apply the required logic/computation</li>
-                  <li>Update result variables</li>
+                  <li>Identify data structure (array, string, matrix, tree, etc.)</li>
+                  <li>Note constraints (size limits, value ranges)</li>
+                  <li>Check for special conditions or formats</li>
                 </ul>
               </li>
-              <li><strong>Return Result:</strong> Format and return the final answer</li>
-            </ol>
-            <div style="margin-top: 15px; padding: 15px; background: #e3f2fd; border-radius: 8px;">
-              <strong>💡 Approach Strategy:</strong>
-              <br>• Start with brute force (O(n²) or O(n³)) for understanding
-              <br>• Then optimize using better data structures or algorithms
-              <br>• Consider: Hash maps, two pointers, sliding window, dynamic programming
-            </div>
+              <li><strong>Output Requirements:</strong> 
+                <ul>
+                  <li>Determine return type (number, boolean, array, etc.)</li>
+                  <li>Understand what exactly needs to be calculated/found</li>
+                  <li>Check for specific formatting requirements</li>
+                </ul>
+              </li>
+              <li><strong>Example Analysis:</strong> 
+                <ul>
+                  <li>Work through provided examples step by step</li>
+                  <li>Identify patterns in input-output relationships</li>
+                  <li>Note any edge cases shown in examples</li>
+                </ul>
+              </li>
+            </ul>
           </div>
         </div>
 
-        <div class="analysis-section">
-          <div class="section-header" onclick="toggleSection(this)">
-            <span>🚨 4. Common Mistakes to Avoid</span>
+        <!-- Step 2: Edge Cases -->
+        <div class="logic-step">
+          <div class="step-header" onclick="toggleLogicStep(this)">
+            <span>⚠️ Step 2: Edge Cases & Constraints</span>
             <span class="chevron">▶</span>
           </div>
-          <div class="section-content" style="display: none;">
-            <div class="mistake-item">
-              <strong>Off-by-one errors:</strong> Check array indices (0 to n-1, not 1 to n)
-            </div>
-            <div class="mistake-item">
-              <strong>Null pointer exceptions:</strong> Always validate inputs before use
-            </div>
-            <div class="mistake-item">
-              <strong>Integer overflow:</strong> Use appropriate data types for large calculations
-            </div>
-            <div class="mistake-item">
-              <strong>Infinite loops:</strong> Ensure loop conditions will eventually become false
-            </div>
-            <div class="mistake-item">
-              <strong>Modifying while iterating:</strong> Be careful when changing collections during iteration
-            </div>
-            <div class="mistake-item">
-              <strong>Forgotten edge cases:</strong> Test with empty inputs, single elements, and boundary values
+          <div class="step-content" style="display: none;">
+            <ul>
+              <li><strong>Common Edge Cases:</strong>
+                <ul>
+                  <li>Empty input (null, empty array/string)</li>
+                  <li>Single element input</li>
+                  <li>All elements the same</li>
+                  <li>Already sorted/optimal input</li>
+                </ul>
+              </li>
+              <li><strong>Boundary Conditions:</strong>
+                <ul>
+                  <li>Minimum and maximum constraint values</li>
+                  <li>Negative numbers (if applicable)</li>
+                  <li>Very large numbers (integer overflow)</li>
+                  <li>Duplicates and how to handle them</li>
+                </ul>
+              </li>
+              <li><strong>Invalid Input Handling:</strong>
+                <ul>
+                  <li>What to return for impossible cases</li>
+                  <li>Input validation requirements</li>
+                  <li>Error handling strategy</li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Step 3: Logical Approach -->
+        <div class="logic-step">
+          <div class="step-header" onclick="toggleLogicStep(this)">
+            <span>🧩 Step 3: Logical Approach & Algorithm</span>
+            <span class="chevron">▶</span>
+          </div>
+          <div class="step-content" style="display: none;">
+            <ol>
+              <li><strong>Problem Understanding:</strong>
+                <ul>
+                  <li>Break down the problem into smaller sub-problems</li>
+                  <li>Identify the core operation needed</li>
+                  <li>Determine if it's a known problem pattern</li>
+                </ul>
+              </li>
+              <li><strong>Algorithm Selection:</strong>
+                <ul>
+                  <li>Consider brute force approach first</li>
+                  <li>Think about optimizations (sorting, hashing, two pointers)</li>
+                  <li>Choose appropriate data structures</li>
+                </ul>
+              </li>
+              <li><strong>Implementation Strategy:</strong>
+                <ul>
+                  <li>Plan the step-by-step execution</li>
+                  <li>Initialize necessary variables</li>
+                  <li>Handle the main logic loop</li>
+                  <li>Return the result in correct format</li>
+                </ul>
+              </li>
+            </ol>
+            
+            <div class="hint-box">
+              <strong>💡 Pro Tip:</strong> Start with the simplest solution that works, then optimize. 
+              Common patterns: Two Pointers, Sliding Window, Hash Maps, BFS/DFS, Dynamic Programming.
             </div>
           </div>
         </div>
 
+        <!-- Step 4: Common Mistakes -->
+        <div class="logic-step">
+          <div class="step-header" onclick="toggleLogicStep(this)">
+            <span>🚨 Step 4: Common Pitfalls to Avoid</span>
+            <span class="chevron">▶</span>
+          </div>
+          <div class="step-content" style="display: none;">
+            <div class="mistake-item">
+              <strong>Off-by-One Errors:</strong> Always double-check loop boundaries. 
+              Arrays are 0-indexed, so last element is at index n-1, not n.
+            </div>
+            <div class="mistake-item">
+              <strong>Null/Undefined Access:</strong> Always validate inputs before using them. 
+              Check for null, undefined, or empty values.
+            </div>
+            <div class="mistake-item">
+              <strong>Integer Overflow:</strong> For large numbers, consider if your data type can handle the result. 
+              Use long or BigInteger when necessary.
+            </div>
+            <div class="mistake-item">
+              <strong>Modifying While Iterating:</strong> Be careful when adding/removing elements from collections 
+              while looping through them.
+            </div>
+            <div class="mistake-item">
+              <strong>Wrong Time Complexity:</strong> Make sure your solution meets the time constraints. 
+              O(n²) might be too slow for large inputs.
+            </div>
+          </div>
+        </div>
+
+        <!-- Action Buttons -->
         <div class="action-buttons">
-          <button class="btn btn-primary" onclick="showFirstStep()">
-            💡 What should I do first?
+          <button class="btn btn-primary" onclick="showFirstStepGuide()">
+            💡 What Should I Do First?
           </button>
           <button class="btn btn-primary" onclick="showCodeTemplate()">
             📝 Show Code Template
           </button>
-          <button class="btn btn-secondary" onclick="showSimilarProblems()">
-            🔗 Similar Problems
+          <button class="btn btn-secondary" onclick="showHintBox()">
+            🔍 Get Another Hint
           </button>
-          <button class="btn btn-secondary" onclick="exportAnalysis()">
-            📄 Export Analysis
+          <button class="btn btn-secondary" onclick="copyAnalysis()">
+            📋 Copy Analysis
           </button>
         </div>
       </div>
@@ -422,34 +531,182 @@ class PopupManager {
     document.body.appendChild(overlay);
 
     // Add global functions for the modal
-    window.toggleSection = function(header) {
+    window.toggleLogicStep = function(header) {
       const content = header.nextElementSibling;
       const chevron = header.querySelector('.chevron');
+      
+      // Close other open steps
+      document.querySelectorAll('.step-header.active').forEach(h => {
+        if (h !== header) {
+          h.classList.remove('active');
+          h.nextElementSibling.style.display = 'none';
+          h.querySelector('.chevron').textContent = '▶';
+        }
+      });
       
       if (content.style.display === 'none' || !content.style.display) {
         content.style.display = 'block';
         chevron.textContent = '▼';
+        header.classList.add('active');
       } else {
         content.style.display = 'none';
         chevron.textContent = '▶';
+        header.classList.remove('active');
       }
     };
 
-    window.showFirstStep = function() {
-      alert('💡 First Step: Read the problem carefully and identify the input/output format. Then think about the simplest approach that could work, even if it\'s not optimal.');
+    window.showFirstStepGuide = function() {
+      const steps = [
+        "📖 Read the problem statement carefully 2-3 times to fully understand what's being asked",
+        "📝 Identify the input format and expected output format clearly",
+        "🧪 Work through the given examples manually to understand the pattern",
+        "🤔 Think about the simplest brute force approach first - don't worry about optimization yet",
+        "📋 Write down your approach in plain English before coding",
+        "⚡ Start coding with proper variable names and comments"
+      ];
+      
+      showModalMessage("💡 First Steps Guide", steps.map((step, i) => `${i + 1}. ${step}`).join('<br><br>'));
     };
 
     window.showCodeTemplate = function() {
-      alert('📝 Code Template feature coming soon! This will show language-specific templates based on the problem type.');
+      const template = `
+<div class="code-template-box">
+<pre>// ${problem.title} - ${problem.site}
+
+function solution(input) {
+    // Step 1: Input validation and edge cases
+    if (!input || input.length === 0) {
+        return null; // or appropriate default
+    }
+    
+    // Step 2: Initialize variables
+    let result = null;
+    
+    // Step 3: Main algorithm logic
+    // TODO: Implement your solution here
+    // - Process the input data
+    // - Apply your algorithm
+    // - Update result variables
+    
+    // Step 4: Return the result
+    return result;
+}
+
+// Test cases
+// console.log(solution(testInput));
+</pre>
+</div>
+<p style="color: #a8e6a3; font-size: 14px; margin-top: 15px;">
+💡 This is a basic template. Adjust parameter names and types based on your specific problem.
+Replace the TODO comment with your actual logic.
+</p>`;
+      
+      showModalMessage("📝 Code Template", template);
     };
 
-    window.showSimilarProblems = function() {
-      alert('🔗 Similar Problems feature coming soon! This will suggest related problems for practice.');
+    window.showHintBox = function() {
+      const hints = [
+        "🔍 Look for keywords in the problem: 'sorted' suggests binary search, 'subarray' suggests sliding window",
+        "📊 Try to visualize the problem with a small example - draw it out if needed",
+        "🧩 Can you break this into smaller, simpler sub-problems?",
+        "💾 Would a hash map help you store and look up information quickly?",
+        "🔄 Is there a pattern or repetition you can exploit?",
+        "📐 Consider the constraints - do they hint at the expected time complexity?"
+      ];
+      
+      const randomHint = hints[Math.floor(Math.random() * hints.length)];
+      showModalMessage("💡 Helpful Hint", randomHint);
     };
 
-    window.exportAnalysis = function() {
-      alert('📄 Export feature coming soon! This will let you save the analysis as a PDF or text file.');
+    window.copyAnalysis = function() {
+      const analysisText = `
+Logic Analysis: ${problem.title} (${problem.site})
+
+1. INPUT/OUTPUT ANALYSIS:
+- Understand the data structure and format
+- Identify constraints and value ranges  
+- Analyze provided examples
+
+2. EDGE CASES & CONSTRAINTS:
+- Empty/null inputs
+- Single element cases
+- Boundary values
+- Duplicate handling
+
+3. LOGICAL APPROACH:
+- Break down the problem
+- Choose appropriate algorithm
+- Plan step-by-step implementation
+
+4. COMMON PITFALLS:
+- Off-by-one errors
+- Null pointer exceptions
+- Integer overflow
+- Wrong time complexity
+
+Generated by Logic Builder Coach Extension
+      `;
+      
+      navigator.clipboard.writeText(analysisText).then(() => {
+        showModalMessage("📋 Copied!", "Analysis has been copied to your clipboard!");
+      }).catch(() => {
+        showModalMessage("❌ Copy Failed", "Please select and copy the text manually.");
+      });
     };
+
+    function showModalMessage(title, content) {
+      const messageModal = document.createElement('div');
+      messageModal.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.8);
+        z-index: 10001;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      `;
+      
+      messageModal.innerHTML = `
+        <div style="
+          background: linear-gradient(135deg, #0d1f1b 0%, #1a2f2a 100%);
+          color: #00ff88;
+          padding: 30px;
+          border-radius: 15px;
+          max-width: 600px;
+          margin: 20px;
+          border: 2px solid #00ff88;
+          box-shadow: 0 0 30px rgba(0, 255, 136, 0.3);
+          font-family: 'Courier New', monospace;
+        ">
+          <h3 style="margin-top: 0; color: #00ff88; text-align: center;">${title}</h3>
+          <div style="color: #a8e6a3; line-height: 1.6; margin: 20px 0;">${content}</div>
+          <button onclick="this.parentElement.parentElement.remove()" 
+                  style="
+                    background: #00ff88;
+                    color: #0d1f1b;
+                    border: none;
+                    padding: 10px 20px;
+                    border-radius: 5px;
+                    cursor: pointer;
+                    font-weight: bold;
+                    width: 100%;
+                    font-size: 14px;
+                    font-family: 'Courier New', monospace;
+                  ">
+            Got it! 👍
+          </button>
+        </div>
+      `;
+      
+      document.body.appendChild(messageModal);
+      
+      messageModal.addEventListener('click', (e) => {
+        if (e.target === messageModal) messageModal.remove();
+      });
+    }
 
     // Close modal when clicking outside
     overlay.addEventListener('click', (e) => {
@@ -514,48 +771,87 @@ class PopupManager {
   }
 
   showHistory() {
-    const historyModal = document.createElement('div');
-    historyModal.style.cssText = `
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background: rgba(0,0,0,0.8);
-      z-index: 1000;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    `;
+    chrome.storage.sync.get(['visitedProblems'], (data) => {
+      const problems = data.visitedProblems || [];
+      
+      const historyModal = document.createElement('div');
+      historyModal.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(0,0,0,0.8);
+        z-index: 1000;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      `;
 
-    const modal = document.createElement('div');
-    modal.style.cssText = `
-      background: white;
-      padding: 30px;
-      border-radius: 15px;
-      width: 80%;
-      max-width: 600px;
-      max-height: 80vh;
-      overflow-y: auto;
-    `;
+      const modal = document.createElement('div');
+      modal.style.cssText = `
+        background: linear-gradient(135deg, #0d1f1b 0%, #1a2f2a 100%);
+        color: #a8e6a3;
+        padding: 30px;
+        border-radius: 15px;
+        width: 80%;
+        max-width: 600px;
+        max-height: 80vh;
+        overflow-y: auto;
+        border: 2px solid #00ff88;
+        box-shadow: 0 0 30px rgba(0, 255, 136, 0.3);
+        font-family: 'Courier New', monospace;
+      `;
 
-    modal.innerHTML = `
-      <h3>📚 Problem History</h3>
-      <p>Recent problems you've analyzed:</p>
-      <div id="historyList">
-        <p style="color: #666; font-style: italic;">No problems analyzed yet. Start by analyzing a problem!</p>
-      </div>
-      <button onclick="this.parentElement.parentElement.remove()" 
-              style="background: #6c757d; color: white; border: none; padding: 10px 20px; border-radius: 5px; margin-top: 20px; cursor: pointer;">
-        Close
-      </button>
-    `;
+      let historyContent = '';
+      if (problems.length === 0) {
+        historyContent = '<p style="color: #a8e6a3; font-style: italic; text-align: center;">No problems analyzed yet. Start by analyzing a problem!</p>';
+      } else {
+        historyContent = problems.slice(0, 10).map((problem, index) => `
+          <div style="
+            background: rgba(0, 0, 0, 0.3);
+            border-left: 4px solid #00ff88;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 0 8px 8px 0;
+          ">
+            <div style="color: #00ff88; font-weight: bold; margin-bottom: 5px;">
+              ${problem.title}
+            </div>
+            <div style="color: #a8e6a3; font-size: 12px;">
+              ${problem.site} • ${new Date(problem.timestamp).toLocaleDateString()}
+            </div>
+          </div>
+        `).join('');
+      }
 
-    historyModal.appendChild(modal);
-    document.body.appendChild(historyModal);
+      modal.innerHTML = `
+        <h3 style="color: #00ff88; margin-top: 0;">📚 Problem History</h3>
+        <p style="color: #a8e6a3;">Recent problems you've analyzed:</p>
+        <div id="historyList">${historyContent}</div>
+        <button onclick="this.parentElement.parentElement.remove()" 
+                style="
+                  background: #00ff88;
+                  color: #0d1f1b;
+                  border: none;
+                  padding: 12px 24px;
+                  border-radius: 25px;
+                  margin-top: 20px;
+                  cursor: pointer;
+                  font-weight: bold;
+                  width: 100%;
+                  font-family: 'Courier New', monospace;
+                ">
+          Close
+        </button>
+      `;
 
-    historyModal.addEventListener('click', (e) => {
-      if (e.target === historyModal) historyModal.remove();
+      historyModal.appendChild(modal);
+      document.body.appendChild(historyModal);
+
+      historyModal.addEventListener('click', (e) => {
+        if (e.target === historyModal) historyModal.remove();
+      });
     });
   }
 
@@ -569,9 +865,9 @@ class PopupManager {
           analyzed: true
         };
 
-        // Add to beginning and limit to 20 items
+        // Add to beginning and limit to 50 items
         problems.unshift(newProblem);
-        if (problems.length > 20) problems.pop();
+        if (problems.length > 50) problems.pop();
 
         chrome.storage.sync.set({ visitedProblems: problems }, resolve);
       });
@@ -580,7 +876,7 @@ class PopupManager {
 
   saveSettings() {
     chrome.storage.sync.set(this.settings, () => {
-      this.showNotification('Settings saved successfully!', 'info');
+      this.showNotification('✅ Settings saved successfully!', 'info');
     });
   }
 
@@ -596,7 +892,7 @@ class PopupManager {
     chrome.storage.sync.set(defaultSettings, () => {
       this.settings = defaultSettings;
       this.applySettings();
-      this.showNotification('Settings reset to defaults!', 'info');
+      this.showNotification('🔄 Settings reset to defaults!', 'info');
     });
   }
 }
